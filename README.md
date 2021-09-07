@@ -4,7 +4,7 @@
 # if we have a large dataset, then we should not use this due to too much time to cost
 sns.pairplot(x)
 
-![](images/images/Capture.JPG)
+![](images/Capture.JPG)
 
 1.3.1. Univeriate Graphs: distribution, box-plot, histogram
 
@@ -37,6 +37,8 @@ for i in num_cols:
 plt.title('x[i]', fontsize = 10)
 plt.show()
 
+![](images/distribution.JPG)
+
 # plot the distribution for all the numeric features
 
 plt.figure(figsize=(50,50))
@@ -47,6 +49,8 @@ for i in num_cols:
     k=k+1
 plt.title('x[i]', fontsize = 10)
 plt.show()
+
+![](images/distributionpt2.JPG)
 
 # text types histogram
 
@@ -60,15 +64,24 @@ for i in cat_cols:
 plt.title('x[i]', fontsize = 10)
 plt.show()
 
+![](images/histogram.JPG)
+
 1.3.2. Multivariate Graphs: distribution, plots, histogram
 
 cat_cols
 
+![](images/catcols.JPG)
+
+
 cat_keys=np.linspace(1, len(cat_cols), len(cat_cols)).astype(int)
 cat_keys
 
+![](images/catkeys.JPG)
+
 dict_cat = {cat_keys[idx]:cat_cols[idx] for idx in range(len(cat_cols))} # for loop inside {}
 dict_cat
+
+![](images/dictcats.JPG)
 
 # let's check the insured occupations
 
@@ -80,6 +93,8 @@ plt.title('Fraud', fontsize = 20)
 plt.xticks(rotation=45)
 plt.legend()
 plt.show()
+
+![](images/insuredoccup.JPG)
 
 i=5
 j=12
@@ -95,6 +110,8 @@ cat_bar1.div(cat_bar1.sum(1).astype(float), axis = 0).plot(kind = 'bar',
 plt.title(var2, fontsize = 20)
 plt.legend()
 plt.show()
+
+![](images/incidentsev.JPG)
 
 i=5
 j=12
@@ -112,11 +129,17 @@ plt.title(var2, fontsize = 20)
 plt.legend()
 plt.show()
 
+![](images/incidentsev2.JPG)
+
 num_keys=np.linspace(1, len(num_cols), len(num_cols)).astype(int)
 num_keys
 
+![](images/numkeys.JPG)
+
 dict_num = {num_keys[idx]:num_cols[idx] for idx in range(len(num_cols))} # for loop inside {}
 dict_num
+
+![](images/dictnum.JPG)
 
 # numeric variable distribution by fraud
 
@@ -134,7 +157,11 @@ fig, axes = joypy.joyplot(df,
 plt.title(var_num, fontsize = 20)
 plt.show()
 
+![](images/totalclaim.JPG)
+
 df.groupby('fraud_reported')['total_claim_amount'].describe()
+
+![](images/groupby.JPG)
 
 # Pairwise correlation
 i=7
@@ -150,6 +177,8 @@ fig1.show()
 fig2 = px.scatter(df, x = var1, y = var2, color = 'fraud_reported',
                 marginal_x = 'rug', marginal_y = 'histogram')
 fig2.show()
+
+![](images/capitalgains.JPG)
 
 # numeric variable distribution by categorical variable's level
 i=7
@@ -168,6 +197,8 @@ fig, axes = joypy.joyplot(df,
 plt.title(var_num, fontsize = 20)
 plt.show()
 
+![](images/claimamt.JPG)
+
 i=7
 j=13
 var_cat=dict_cat[i]
@@ -180,6 +211,8 @@ sns.stripplot(df[var_cat], df[var_num], palette = 'bone')
 plt.title(var_num, fontsize = 20)
 plt.show()
 
+![](images/hobbies.JPG)
+
 i=7
 j=13
 var_cat=dict_cat[i]
@@ -191,6 +224,8 @@ plt.rcParams['figure.figsize'] = (15, 8)
 sns.boxenplot(df[var_cat], df[var_num], palette = 'pink')
 plt.title(var_num, fontsize = 20)
 plt.show()
+
+![](images/newhobbies.JPG)
 
 i=13
 j=16
@@ -211,6 +246,8 @@ layout = go.Layout(title = var_num)
 
 fig = go.Figure(data = data_boxplot, layout = layout)
 py.iplot(fig)
+
+![](images/gobox.JPG)
 
 i=1
 j=3
@@ -252,6 +289,8 @@ layout = go.Layout(
 fig = go.Figure(data = data_3d , layout=layout)
 py.iplot(fig)
 
+![](images/3dgraph.JPG)
+
 df=df.sort_values(by=['auto_year','months_as_customer'])
 
 # dynamic graphs along time line
@@ -268,6 +307,8 @@ figure = bubbleplot(dataset = df, x_column = var1, y_column = var2,
 
 py.iplot(figure, config={'scrollzoom': True})
 
+![](images/dynamic.JPG)
+
 
 1.4 Data Description
 
@@ -277,9 +318,13 @@ py.iplot(figure, config={'scrollzoom': True})
 # there are 3 types of features in total: int64, object and float64, in which the object is text
 df.dtypes
 
+![](images/dtypes.JPG)
+
 # check the data information|
 df.info(verbose=True)
 # there are some missing values in the dataset
+
+![](images/dinfo.JPG)
 
 1.4.2. List the Frequency for each of the categorical variable
 
@@ -293,6 +338,8 @@ for col in x_categori.columns:
     print('Missing Values:', len(x_categori[col])-x_categori[col].count())
     print('\n')
    
+![](images/frequency.JPG)
+   
 # list the cross table between any two of the categorical variables
 i=5
 j=7
@@ -300,24 +347,37 @@ var1=cat_cols[i]
 var2=cat_cols[j]
 pd.crosstab(x[var1], x[var2])
 
+![](images/crosstable.JPG)
+
 1.4.3. Describe variales' Count, Mean, Standard Deviation, Minimum, Q1, Mediam, Q3, Max, MAD and Correlation
 
 # describe all the numeric variabl
 df.describe()
 
+![](images/describe.JPG)
+
 # compute the mean absolute deviation
 x_numeric=pd.DataFrame(df, columns=num_cols)
 x_numeric.mad().round(decimals = 3)
+
+![](images/meanabsdev.JPG)
 
 # compute the median absolute deviation
 from statsmodels import robust
 x_numeric=pd.DataFrame(df, columns=num_cols)
 x_numeric.apply(robust.mad).round(decimals = 3)
 
+![](images/medianabsdev.JPG)
+
 # calculate the correlation on independent variables
 x.corr()
 
+![](images/correlation.JPG)
+
+
 sns.heatmap(x.corr(), annot=True)
+
+![](images/heatmap.JPG)
 
 1.4.4. list the distribution of numeric variable at each level of selected categorical variable
 
@@ -329,6 +389,8 @@ num_var=num_cols[j]
 print('distribution of', num_var, 'at', cat_var)
 print('\n')
 print (df.groupby(cat_var)[num_var].describe())
+
+![](images/distvehicleclaim.JPG)
 
 
 1.5 Data Preparation & Feature Analysis
@@ -343,6 +405,8 @@ pd.set_option("display.max_rows", None)
 missing=1 - x.count()/len(x.index)
 missing.sort_values()
 
+![](images/missingvalue.JPG)
+
 print('\n')
 # check the collision_type distribution
 count_collision_type = x['collision_type'].value_counts()
@@ -355,6 +419,8 @@ print('\n')
 # check the police_report_available distribution
 count_police_report_available = x['police_report_available'].value_counts()
 print(count_police_report_available)
+
+![](images/collisiondist.JPG)
 
 # we will replace the '?' by unknow since we do not know.
 x['collision_type'].fillna('Unknown', inplace = True)
@@ -370,6 +436,8 @@ x.isnull().any().any()
 # Display column missingness
 x.isnull().sum()
 # the result indicates there is no missing values
+
+![](images/columnmissingness.JPG)
 
 1.5.2 Drop some features
 
@@ -393,9 +461,13 @@ cat_keys1=np.linspace(1, len(cat_cols1), len(cat_cols1)).astype(int)
 dict_cat1 = {cat_keys1[idx]:cat_cols1[idx] for idx in range(len(cat_cols1))} # for loop inside {}
 dict_cat1
 
+![](images/catkeysdrop.JPG)
+
 num_keys1=np.linspace(1, len(num_cols1), len(num_cols1)).astype(int)
 dict_num1 = {num_keys1[idx]:num_cols1[idx] for idx in range(len(num_cols1))} # for loop inside {}
 dict_num1 
+
+![](images/numkeysdrop.JPG)
 
 # install when use it first time
 ! pip install outlier_utils
@@ -418,11 +490,15 @@ for i in range(len(num_cols1)):
     
 # the result indicates no outliers
 
+![](images/outliersdetect.JPG)
+
 1.5.4. Create Dummy Variables
 
 # Encode categorical features into dataframe
 x_dummy = pd.get_dummies(x_keep, columns = cat_cols1)
 x_dummy.head(5)
+
+![](images/dummyvar.JPG)
 
 x_dummy.shape
 
@@ -437,7 +513,11 @@ x_scaled = sc.fit_transform(x_dummy)
 x_scaled_df = pd.DataFrame(x_scaled, columns = x_dummy.columns)
 x_scaled_df.head(10)
 
+![](images/standardize.JPG)
+
 x_scaled_df.describe()
+
+![](images/standescribe.JPG)
 
 1.5.6. Test Multicollinearity and Remove the High Correlated Feature
 
@@ -452,6 +532,8 @@ vif_data["VIF"] = [variance_inflation_factor(x_scaled_df.values, i)
                           
 vif_data.sort_values("VIF", ascending=False)
 
+![](images/vif.JPG)
+
 x_categori=pd.DataFrame(x_keep, columns=cat_cols1)
 for col in x_categori.columns:
     col_count=x_categori[col].value_counts()
@@ -461,7 +543,11 @@ for col in x_categori.columns:
     print('Missing Values:', len(x_categori[col])-x_categori[col].count())
     print('\n')
     
+![](images/policefrequency.JPG)
+    
 pd.crosstab(df['fraud_reported'], df['incident_city'])
+
+![](images/fraudcross.JPG)
 
 x_final=x_scaled_df.drop(['insured_hobbies_camping', 'incident_type_Vehicle Theft', 
 'incident_severity_Trivial Damage', 'authorities_contacted_None', 'insured_occupation_adm-clerical', 'insured_education_level_Masters', 
@@ -479,9 +565,13 @@ vif_data["VIF"] = [variance_inflation_factor(x_final.values, i)
                           for i in range(len(x_final.columns))]   
 vif_data.sort_values("VIF", ascending=False)
 
+![](images/postvif.JPG)
+
 x_final.shape
 
 x_final.head(10)
+
+![](images/finalhead.JPG)
 
 1.5.6 Resampling the Data
 
